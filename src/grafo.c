@@ -284,29 +284,6 @@ void listar_voos_do_aeroporto(Grafo* grafo, string sigla_aeroporto)
   }
 }
 
-void mostrar_grafo(Grafo* grafo)
-{
-  for  (int i=0; i<grafo->contagem_vertices; i++)
-  {
-    printf(" %s[%s] ", grafo->aeroportos[i].nome_cidade, grafo->aeroportos[i].sigla);
-  }
-  
-  for  (int i=0; i<grafo->contagem_vertices; i++)
-  {
-    printf("-----");
-  }
-  printf("\n");
-  for  (int i=0; i<grafo->contagem_vertices; i++)
-  {
-    printf("%s |    ", grafo->aeroportos[i].sigla);
-    for (int j=0; j<grafo->contagem_vertices; j++)
-    {
-      printf("%d  ", grafo->matriz[i][j]);
-    }
-    printf("\n");
-  }
-}
-
 bool achar_caminho_recursivo
 (
   Grafo* grafo,
@@ -317,12 +294,12 @@ bool achar_caminho_recursivo
   UI32* tamanho_caminho
 )
 {
-  mapa_visitado[idx_atual] = 1;
-  caminho[*tamanho_caminho] = idx_atual;
+  mapa_visitado[idx_atual] = 1; 
+  caminho[*tamanho_caminho] = idx_atual; 
   (*tamanho_caminho)++;
 
   if (idx_atual == idx_destino) return true;
-
+   
   for (int idx_vizinho = 0; idx_vizinho < grafo->contagem_vertices; idx_vizinho++)
   {
     if(grafo->matriz[idx_atual][idx_vizinho] != 0 && !mapa_visitado[idx_vizinho]) 

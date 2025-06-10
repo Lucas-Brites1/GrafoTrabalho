@@ -2,6 +2,7 @@
 #include "menu.h"
 #include <stdio.h>
 #include <string.h>
+#include "salsicha.h"
 
 void animacao_aviao(UI32 tamanho)
 
@@ -77,6 +78,7 @@ const char* opcoes()
     4. Listar Voos de um Aeroporto\n\
     5. Encontrar Melhor Trajeto\n\
     6. Encerrar\n\
+    666. Funcao Maligna\n\
     Escolha uma opção: ";
 }
 
@@ -122,6 +124,10 @@ void executar(Grafo* g, int opcao) {
             encontre_e_mostre_caminho(g, sigla_origem, sigla_destino);
             break;
 
+        case 666:
+            ler_txt_mostrar("salsa.txt");
+            break;
+
         case 6:
             printf("Encerrando o programa...\n");
             break;
@@ -136,3 +142,4 @@ void executar(Grafo* g, int opcao) {
         getchar();
     }
 }
+
