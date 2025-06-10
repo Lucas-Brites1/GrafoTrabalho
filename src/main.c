@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "grafo.h"
+#include "menu.h"
 int main()
 {
-  Grafo* g = criar_grafo();
+  menu(criar_grafo());
+  /*Grafo* g = criar_grafo();
   adicionar_vertice(g, "GRU", "Sao Paulo");
   adicionar_vertice(g, "BSB", "Brasilia");
   adicionar_vertice(g, "TRU", "Paraiba");
@@ -15,4 +17,6 @@ int main()
   adicionar_aresta(g, "BSB", "CEE", 10);
   remover_aresta(g, "BSB", "CEE");
   listar_voos_do_aeroporto(g, "GRU");
+  encontre_e_mostre_caminho(g, "GRU", "CEE");
+  */
 }

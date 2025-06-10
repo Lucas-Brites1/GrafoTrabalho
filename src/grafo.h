@@ -43,3 +43,4 @@ bool   remover_aresta(Grafo* grafo, string sigla_origem, string sigla_destino);
 
 void listar_voos_do_aeroporto(Grafo* grafo, string sigla_aeroporto);
 void mostrar_grafo(Grafo* grafo);
+void encontre_e_mostre_caminho(Grafo* grafo, string origem, string destino);

@@ -71,7 +71,7 @@ UI32** criar_matriz_adjacencia(UI32 tamanho)
       ERRO("Falha ao alocar as colunas da matriz.\n");
       for(int j=0; j<i; j++)
       {
-        free(matriz[i]);
+        free(matriz[j]);
       }
       free(matriz);
       return NULL;
@@ -305,4 +305,71 @@ void mostrar_grafo(Grafo* grafo)
     }
     printf("\n");
   }
+}
+
+bool achar_caminho_recursivo
+(
+  Grafo* grafo,
+  UI32 idx_atual,
+  UI32 idx_destino,
+  UI32* mapa_visitado,
+  UI32* caminho,
+  UI32* tamanho_caminho
+)
+{
+  mapa_visitado[idx_atual] = 1;
+  caminho[*tamanho_caminho] = idx_atual;
+  (*tamanho_caminho)++;
+
+  if (idx_atual == idx_destino) return true;
+
+  for (int idx_vizinho = 0; idx_vizinho < grafo->contagem_vertices; idx_vizinho++)
+  {
+    if(grafo->matriz[idx_atual][idx_vizinho] != 0 && !mapa_visitado[idx_vizinho]) 
+    {
+      if (achar_caminho_recursivo(grafo, idx_vizinho, idx_destino, mapa_visitado, caminho, tamanho_caminho)) return true;
+    }
+  }
+
+  (*tamanho_caminho)--;
+  return false;
+}
+
+void encontre_e_mostre_caminho(Grafo* grafo, string origem, string destino)
+{
+  int idx_origem; int idx_destino;
+  procurar_vertice(grafo, origem, &idx_origem);
+  procurar_vertice(grafo, destino, &idx_destino);
+  if (idx_origem == -1 || idx_destino == -1)
+  {
+    ERRO("Destino ou origem invalidos.\n");
+    return;
+  }
+
+  printf("\nBuscando trajeto de %s para %s...\n", grafo->aeroportos[idx_origem].nome_cidade, grafo->aeroportos[idx_destino].nome_cidade);
+
+  UI32* mapa_visita = (UI32*) calloc(grafo->contagem_vertices, sizeof(UI32));
+  UI32* caminho = (UI32*) malloc(grafo->contagem_vertices * sizeof(UI32));
+  UI32  tamanho_caminho = 0;
+
+  if (!mapa_visita || !caminho)
+  {
+    ERRO("Erro de alocacao de memoria para realizar busca.\n");
+    free(mapa_visita); free(caminho);
+    return;
+  }
+
+  if (achar_caminho_recursivo(grafo, idx_origem, idx_destino, mapa_visita, caminho, &tamanho_caminho))
+  {
+    SUCESS("Trajeto encontrado: ");
+    for (UI32 i=0; i < tamanho_caminho; i++)
+    {
+      printf("%s%s", grafo->aeroportos[caminho[i]].sigla, (i < tamanho_caminho - 1) ? " -> " : "\n");
+    }
+  } else
+  {
+    printf("Nenhum trajeto encontrado.\n");
+  }
+  free(mapa_visita);
+  free(caminho);
 }
