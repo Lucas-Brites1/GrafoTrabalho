@@ -56,7 +56,6 @@ bool procurar_voo(UI32 numero_voo, Grafo* grafo)
 UI32** criar_matriz_adjacencia(UI32 tamanho)
 {
   UI32** matriz = (UI32**) calloc(tamanho, sizeof(UI32*));
-  
   if (!matriz)
   {
     ERRO("Falha ao tentar alocar memoria para matriz de adjacencia.\n");
@@ -284,32 +283,36 @@ void listar_voos_do_aeroporto(Grafo* grafo, string sigla_aeroporto)
   }
 }
 
-bool achar_caminho_recursivo
-(
-  Grafo* grafo,
-  UI32 idx_atual,
-  UI32 idx_destino,
-  UI32* mapa_visitado,
-  UI32* caminho,
-  UI32* tamanho_caminho
-)
+void achar_todos_os_caminhos_recursivo(
+    Grafo* grafo,
+    UI32 idx_atual,
+    UI32 idx_destino,
+    UI32* mapa_visitado,
+    UI32* caminho,
+    UI32 tamanho_caminho )
 {
-  mapa_visitado[idx_atual] = 1; 
-  caminho[*tamanho_caminho] = idx_atual; 
-  (*tamanho_caminho)++;
+  mapa_visitado[idx_atual] = 1;
+  caminho[tamanho_caminho] = idx_atual;
+  tamanho_caminho++;
 
-  if (idx_atual == idx_destino) return true;
-   
-  for (int idx_vizinho = 0; idx_vizinho < grafo->contagem_vertices; idx_vizinho++)
+  if (idx_atual == idx_destino) 
   {
-    if(grafo->matriz[idx_atual][idx_vizinho] != 0 && !mapa_visitado[idx_vizinho]) 
+    printf("  ");
+    for (UI32 i = 0; i < tamanho_caminho; i++) {
+      printf("%s%s", grafo->aeroportos[caminho[i]].sigla, (i < tamanho_caminho - 1) ? " -> " : "\n");
+    }
+  } else 
+  {
+    for (int idx_vizinho = 0; idx_vizinho < grafo->contagem_vertices; idx_vizinho++) 
     {
-      if (achar_caminho_recursivo(grafo, idx_vizinho, idx_destino, mapa_visitado, caminho, tamanho_caminho)) return true;
+      if (grafo->matriz[idx_atual][idx_vizinho] != 0 && !mapa_visitado[idx_vizinho]) 
+      {
+        achar_todos_os_caminhos_recursivo(grafo, idx_vizinho, idx_destino, mapa_visitado, caminho, tamanho_caminho);
+      }
     }
   }
 
-  (*tamanho_caminho)--;
-  return false;
+  mapa_visitado[idx_atual] = 0;
 }
 
 void encontre_e_mostre_caminho(Grafo* grafo, string origem, string destino)
@@ -336,17 +339,8 @@ void encontre_e_mostre_caminho(Grafo* grafo, string origem, string destino)
     return;
   }
 
-  if (achar_caminho_recursivo(grafo, idx_origem, idx_destino, mapa_visita, caminho, &tamanho_caminho))
-  {
-    SUCESS("Trajeto encontrado: ");
-    for (UI32 i=0; i < tamanho_caminho; i++)
-    {
-      printf("%s%s", grafo->aeroportos[caminho[i]].sigla, (i < tamanho_caminho - 1) ? " -> " : "\n");
-    }
-  } else
-  {
-    printf("Nenhum trajeto encontrado.\n");
-  }
+  SUCESS("Trajetos encontrados: \n");
+  achar_todos_os_caminhos_recursivo(grafo, idx_origem, idx_destino, mapa_visita, caminho, tamanho_caminho);
   free(mapa_visita);
   free(caminho);
 }

@@ -1,2 +1,42 @@
 [20:30-09/06/2025] Lucas S.Brites
 : Implementando funcao para buscar rota de voo entre aeroportos utilizando algoritmo DFS 
+
+Murilo de Santana Mendes:
+
+[Entre 17:00h e 22:50h do dia 07/06/2025]:
+
+- Foi dado início ao trabalho. A estrutura do grafo, bem como do vértice foram criadas e armazenadas em  grafo.h
+
+- Em seguida a função "criar_grafo" foi desenvolvida, concomitantemente com a função auxiliar "criar_matriz_adjacencia" e armazenadas em grafo.c.
+Esta função possibilitará a inserção e manipulação de vértices e arestas no grafo.
+
+
+[Entre 13:30h e 17:10h do dia 08/06/2025]:
+
+- Foi desenvolvida a função "adicionar_vertice", concomitantemente com as funções auxialires "criar_vertice", "realocar_array_vertices" e 
+realocar_matriz_adjacencia e armazenadas em grafo.c. Essa função permitiu a inserção de vértices (aeroportos) no programa, que também realoca e expande 
+o limite de armazenamento dos vértices e a matriz caso o limite de tamanho tenha sido atingido.
+
+
+[Entre 20:20h e 23:40h do dia 08/06/2025]:
+
+- Foi desenvolvida a função "adicionar_aresta", concomitantemente com as funções auxiliares "procurar_vertice", que permitiu fazer validações a respeito
+da existência dos aeroportos no sistema e a definição do índice correspondente ao aeroporto, e "procurar_voo", que permitiu validar a existência de um 
+voo no sistema. Todas armazenadas em grafo.c. Em suma, a função permitiu o cadastramento de voos (arestas) entre aeroportos (vértices) distintos.
+
+Pedro Henrique Lange Souza:
+
+[Entre 13:10h e 16:50h do dia 09/06/2025]:
+
+ - Foi desenvolvida a função "remover aresta", em grafos.c, ela é responsável por excluir uma aresta (voo) entre dois vértices (aeroportos), se ela existir. A função realiza verificações pra garantir que tanto os vértices quanto a aresta estejam devidamente registrados no grafo antes de fazer a remoção.
+
+
+[Entre 18:40h e 21:00h do dia 09/06/2025]:
+
+- Foi criada a função "listar_voos_aeroporto", também em grafos.c, que permite exibir todos os voos (arestas) partindo de um determinado aeroporto (vértice). A função realiza uma busca pelo vértice informado e percorre a matriz de adjacência para listar os destinos existentes a partir dele, com respectivas distâncias.
+
+[Entre 20:30h e 23:40h do dia 10/06/2025]:
+
+- Desenvolvido o menu completo do programa, nos arquivos menu.c e menu.h, contendo todas as interações com o usuário. O menu permite a realização de todas as funções pedidas nas instruções, são elas cadastrar aeroportos, cadastrar voos, remover voos, listar voos a partir de um aeroporto, listagem dos possíveis trajetos. Cada opção foi conectada às funções implementadas em grafos.c, tornando o sistema navegável e funcional.
+
+- Adição de um pequeno detalhe com a função "animacao_aviao" em menu.c que ao inicia o programa realiza uma pequena animação de um ícone de avião "voando".
