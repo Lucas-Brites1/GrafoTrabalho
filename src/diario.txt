@@ -1,5 +1,12 @@
-[20:30-09/06/2025] Lucas S.Brites
-: Implementando funcao para buscar rota de voo entre aeroportos utilizando algoritmo DFS 
+Lucas Silva Brites:
+
+[Entre 19:00 e 20:30 no dia 09/06/2025]
+
+- Foram desenvolvidas as funções achar_todos_os_caminhos_recursivo e encontre_e_mostre_caminho, que juntas cumprem a quinta requisição da atividade. A implementação foi feita utilizando o algoritmo DFS (Busca em Profundidade), uma técnica de busca primariamente usada para percorrer estruturas de árvores ou grafos, explorando todos os caminhos possíveis a partir de um nó.
+
+- Explicação do algoritmo: A função recursiva recebe um índice de origem (o nó inicial), um índice de destino (o alvo da busca) e vetores auxiliares. Dentre eles, o mais importante é um "mapa de visitados", que marca os índices que já foram percorridos no caminho atual. Caso um índice já tenha sido visitado, o algoritmo não o acessa novamente, evitando ciclos infinitos e caminhos redundantes. Ao encontrar o destino, o trajeto completo é impresso na tela.
+
+- Adicionalmente, para melhorar a experiência do usuário e facilitar a depuração, foram criados macros para exibir mensagens de feedback visual no terminal. Utilizando códigos de escape ANSI, foram definidos os macros ERRO (em vermelho) e SUCESSO (em verde). O macro ERRO foi projetado para fornecer informações detalhadas de depuração, incluindo o arquivo, a linha e o nome da função onde a falha ocorreu.
 
 Murilo de Santana Mendes:
 
@@ -38,5 +45,3 @@ Pedro Henrique Lange Souza:
 [Entre 20:30h e 23:40h do dia 10/06/2025]:
 
 - Desenvolvido o menu completo do programa, nos arquivos menu.c e menu.h, contendo todas as interações com o usuário. O menu permite a realização de todas as funções pedidas nas instruções, são elas cadastrar aeroportos, cadastrar voos, remover voos, listar voos a partir de um aeroporto, listagem dos possíveis trajetos. Cada opção foi conectada às funções implementadas em grafos.c, tornando o sistema navegável e funcional.
-
-- Adição de um pequeno detalhe com a função "animacao_aviao" em menu.c que ao inicia o programa realiza uma pequena animação de um ícone de avião "voando".

@@ -1,11 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "grafo.h"
 #include "menu.h"
 int main()
 {
-  menu(criar_grafo());
-  /*Grafo* g = criar_grafo();
+  Grafo* g = criar_grafo();
+  adicionar_vertice(g, "BSB", "Brasília");
+  adicionar_vertice(g, "CNF", "Belo Horizonte");
+  adicionar_vertice(g, "GIG", "Rio de Janeiro");
+  adicionar_vertice(g, "GRU", "Guarulhos");
+  adicionar_vertice(g, "SSA", "Salvador");
+
+  adicionar_aresta(g, "BSB", "SSA", 107);
+  adicionar_aresta(g, "CNF", "GIG", 555);
+  adicionar_aresta(g, "CNF", "GRU", 101);
+  adicionar_aresta(g, "CNF", "SSA", 214);
+  adicionar_aresta(g, "GIG", "CNF", 554);
+  adicionar_aresta(g, "GIG", "GRU", 90);
+  adicionar_aresta(g, "GRU", "BSB", 50);
+  adicionar_aresta(g, "GRU", "CNF", 102);
+  adicionar_aresta(g, "GRU", "GIG", 89);
+  adicionar_aresta(g, "SSA", "CNF", 215); 
+  menu(g);
+  /*
+  Grafo g = criar_grafo();
   adicionar_vertice(g, "GRU", "Sao Paulo");
   adicionar_vertice(g, "BSB", "Brasilia");
   adicionar_vertice(g, "TRU", "Paraiba");

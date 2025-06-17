@@ -4,23 +4,6 @@
 #include <string.h>
 #include "salsicha.h"
 
-void animacao_aviao(UI32 tamanho)
-
-{
-  for(UI32 i=0; i<tamanho; i++)
-  { 
-    printf("\r");
-
-    for (UI32 j=0; j<i; j++) printf(" ");
-    printf("✈ \033[K");
-    fflush(stdout);
-    TIMER(10);
-  }
-
-  printf("\033[?25h");
-  printf("\n");
-}
-
 void limpar_buffer_stdin() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -69,7 +52,6 @@ void menu(Grafo* grafo)
 
 const char* opcoes()
 {
-    animacao_aviao(50);
     return " \n\
                [MENU]\n\
     1. Cadastrar Aeroporto\n\
